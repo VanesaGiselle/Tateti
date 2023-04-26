@@ -9,25 +9,76 @@ import XCTest
 @testable import Tateti
 
 class TatetiTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testGanaJugadorUno_CasoGanadorHorizontal() throws {
+        let tateti = Tateti()
+        XCTAssertEqual("Próxima ronda juega el jugador: 2", tateti.seJuega(posición: Posicion(x: .cero, y: .cero)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 0, 0], [0, 0, 0], [0, 0, 0]])
+        XCTAssertEqual("Próxima ronda juega el jugador: 1", tateti.seJuega(posición: Posicion(x: .uno, y: .uno)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 0, 0], [0, 2, 0], [0, 0, 0]])
+        XCTAssertEqual("Próxima ronda juega el jugador: 2", tateti.seJuega(posición: Posicion(x: .cero, y: .uno)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 1, 0], [0, 2, 0], [0, 0, 0]])
+        XCTAssertEqual("Próxima ronda juega el jugador: 1", tateti.seJuega(posición: Posicion(x: .dos, y: .uno)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 1, 0], [0, 2, 0], [0, 2, 0]])
+        XCTAssertEqual("Ganó el jugador: 1", tateti.seJuega(posición: Posicion(x: .cero, y: .dos)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 1, 1], [0, 2, 0], [0, 2, 0]])
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testGanaJugadorDos_CasoGanadorDiagonal() throws {
+        let tateti = Tateti()
+        XCTAssertEqual("Próxima ronda juega el jugador: 2", tateti.seJuega(posición: Posicion(x: .uno, y: .cero)))
+        XCTAssertEqual(tateti.verResultados(), [[0, 0, 0], [1, 0, 0], [0, 0, 0]])
+        XCTAssertEqual("Próxima ronda juega el jugador: 1", tateti.seJuega(posición: Posicion(x: .cero, y: .cero)))
+        XCTAssertEqual(tateti.verResultados(), [[2, 0, 0], [1, 0, 0], [0, 0, 0]])
+        XCTAssertEqual("Próxima ronda juega el jugador: 2", tateti.seJuega(posición: Posicion(x: .uno, y: .dos)))
+        XCTAssertEqual(tateti.verResultados(), [[2, 0, 0], [1, 0, 1], [0, 0, 0]])
+        XCTAssertEqual("Próxima ronda juega el jugador: 1", tateti.seJuega(posición: Posicion(x: .uno, y: .uno)))
+        XCTAssertEqual(tateti.verResultados(), [[2, 0, 0], [1, 2, 1], [0, 0, 0]])
+        XCTAssertEqual("Próxima ronda juega el jugador: 2", tateti.seJuega(posición: Posicion(x: .dos, y: .cero)))
+        XCTAssertEqual(tateti.verResultados(), [[2, 0, 0], [1, 2, 1], [1, 0, 0]])
+        XCTAssertEqual("Ganó el jugador: 2", tateti.seJuega(posición: Posicion(x: .dos, y: .dos)))
+        XCTAssertEqual(tateti.verResultados(), [[2, 0, 0], [1, 2, 1], [1, 0, 2]])
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testGanaJugadorUno_CasoGanadorVertical() throws {
+        let tateti = Tateti()
+        XCTAssertEqual("Próxima ronda juega el jugador: 2", tateti.seJuega(posición: Posicion(x: .cero, y: .cero)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 0, 0], [0, 0, 0], [0, 0, 0]])
+        XCTAssertEqual("Próxima ronda juega el jugador: 1", tateti.seJuega(posición: Posicion(x: .uno, y: .uno)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 0, 0], [0, 2, 0], [0, 0, 0]])
+        XCTAssertEqual("Próxima ronda juega el jugador: 2", tateti.seJuega(posición: Posicion(x: .uno, y: .cero)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 0, 0], [1, 2, 0], [0, 0, 0]])
+        XCTAssertEqual("Próxima ronda juega el jugador: 1", tateti.seJuega(posición: Posicion(x: .dos, y: .uno)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 0, 0], [1, 2, 0], [0, 2, 0]])
+        XCTAssertEqual("Ganó el jugador: 1", tateti.seJuega(posición: Posicion(x: .dos, y: .cero)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 0, 0], [1, 2, 0], [1, 2, 0]])
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testErrorAlPisarPosicionYaJugada() throws {
+        let tateti = Tateti()
+        XCTAssertEqual("Próxima ronda juega el jugador: 2", tateti.seJuega(posición: Posicion(x: .cero, y: .cero)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 0, 0], [0, 0, 0], [0, 0, 0]])
+        XCTAssertEqual("¡ERROR! La posición ya está ocupada, elegí otra para seguir jugando.", tateti.seJuega(posición: Posicion(x: .cero, y: .cero)))
     }
-
+    
+    func testEmpate() throws {
+        let tateti = Tateti()
+        XCTAssertEqual("Próxima ronda juega el jugador: 2", tateti.seJuega(posición: Posicion(x: .cero, y: .cero)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 0, 0], [0, 0, 0], [0, 0, 0]])
+        XCTAssertEqual("Próxima ronda juega el jugador: 1", tateti.seJuega(posición: Posicion(x: .uno, y: .uno)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 0, 0], [0, 2, 0], [0, 0, 0]])
+        XCTAssertEqual("Próxima ronda juega el jugador: 2", tateti.seJuega(posición: Posicion(x: .uno, y: .cero)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 0, 0], [1, 2, 0], [0, 0, 0]])
+        XCTAssertEqual("Próxima ronda juega el jugador: 1", tateti.seJuega(posición: Posicion(x: .dos, y: .cero)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 0, 0], [1, 2, 0], [2, 0, 0]])
+        XCTAssertEqual("Próxima ronda juega el jugador: 2", tateti.seJuega(posición: Posicion(x: .cero, y: .dos)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 0, 1], [1, 2, 0], [2, 0, 0]])
+        XCTAssertEqual("Próxima ronda juega el jugador: 1", tateti.seJuega(posición: Posicion(x: .cero, y: .uno)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 2, 1], [1, 2, 0], [2, 0, 0]])
+        XCTAssertEqual("Próxima ronda juega el jugador: 2", tateti.seJuega(posición: Posicion(x: .uno, y: .dos)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 2, 1], [1, 2, 1], [2, 0, 0]])
+        XCTAssertEqual("Próxima ronda juega el jugador: 1", tateti.seJuega(posición: Posicion(x: .dos, y: .dos)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 2, 1], [1, 2, 1], [2, 0, 2]])
+        XCTAssertEqual("Empate.", tateti.seJuega(posición: Posicion(x: .dos, y: .uno)))
+        XCTAssertEqual(tateti.verResultados(), [[1, 2, 1], [1, 2, 1], [2, 1, 2]])
+    }
 }

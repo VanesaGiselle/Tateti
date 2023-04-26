@@ -16,6 +16,11 @@
 		935CDF9929F817E20010F6FB /* TatetiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CDF9829F817E20010F6FB /* TatetiTests.swift */; };
 		935CDFA329F817E20010F6FB /* TatetiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CDFA229F817E20010F6FB /* TatetiUITests.swift */; };
 		935CDFA529F817E20010F6FB /* TatetiUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CDFA429F817E20010F6FB /* TatetiUITestsLaunchTests.swift */; };
+		935CDFB229F8192F0010F6FB /* Tablero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CDFB129F8192F0010F6FB /* Tablero.swift */; };
+		935CDFB429F819560010F6FB /* Jugador.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CDFB329F819560010F6FB /* Jugador.swift */; };
+		935CDFB629F81CC10010F6FB /* Posicion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CDFB529F81CC10010F6FB /* Posicion.swift */; };
+		935CDFB829F83A530010F6FB /* Tateti.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CDFB729F83A530010F6FB /* Tateti.swift */; };
+		935CDFBA29F974200010F6FB /* PosicionIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935CDFB929F974200010F6FB /* PosicionIndex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,11 @@
 		935CDF9E29F817E20010F6FB /* TatetiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TatetiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		935CDFA229F817E20010F6FB /* TatetiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatetiUITests.swift; sourceTree = "<group>"; };
 		935CDFA429F817E20010F6FB /* TatetiUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TatetiUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		935CDFB129F8192F0010F6FB /* Tablero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tablero.swift; sourceTree = "<group>"; };
+		935CDFB329F819560010F6FB /* Jugador.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jugador.swift; sourceTree = "<group>"; };
+		935CDFB529F81CC10010F6FB /* Posicion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posicion.swift; sourceTree = "<group>"; };
+		935CDFB729F83A530010F6FB /* Tateti.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tateti.swift; sourceTree = "<group>"; };
+		935CDFB929F974200010F6FB /* PosicionIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosicionIndex.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +112,11 @@
 				935CDF8129F817DE0010F6FB /* AppDelegate.swift */,
 				935CDF8329F817DE0010F6FB /* SceneDelegate.swift */,
 				935CDF8529F817DE0010F6FB /* ViewController.swift */,
+				935CDFB129F8192F0010F6FB /* Tablero.swift */,
+				935CDFB729F83A530010F6FB /* Tateti.swift */,
+				935CDFB529F81CC10010F6FB /* Posicion.swift */,
+				935CDFB929F974200010F6FB /* PosicionIndex.swift */,
+				935CDFB329F819560010F6FB /* Jugador.swift */,
 				935CDF8729F817DE0010F6FB /* Main.storyboard */,
 				935CDF8A29F817E10010F6FB /* Assets.xcassets */,
 				935CDF8C29F817E10010F6FB /* LaunchScreen.storyboard */,
@@ -258,9 +273,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				935CDFB829F83A530010F6FB /* Tateti.swift in Sources */,
 				935CDF8629F817DE0010F6FB /* ViewController.swift in Sources */,
+				935CDFBA29F974200010F6FB /* PosicionIndex.swift in Sources */,
+				935CDFB629F81CC10010F6FB /* Posicion.swift in Sources */,
+				935CDFB229F8192F0010F6FB /* Tablero.swift in Sources */,
 				935CDF8229F817DE0010F6FB /* AppDelegate.swift in Sources */,
 				935CDF8429F817DE0010F6FB /* SceneDelegate.swift in Sources */,
+				935CDFB429F819560010F6FB /* Jugador.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
