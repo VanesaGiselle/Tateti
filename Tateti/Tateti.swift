@@ -9,7 +9,7 @@ import Foundation
 
 class Tateti {
     private var tablero: Tablero = Tablero()
-    private var jugador: Jugador = .uno
+    var jugadorActual: Jugador = .uno
     
     init() {
         iniciarJuego()
@@ -17,23 +17,28 @@ class Tateti {
     
     private func iniciarJuego() {
         tablero.iniciar()
+        jugadorActual = .uno
     }
     
-    func verResultados() -> [[Int]] {
+    internal func verResultados() -> [[Int]] {
         return tablero.verTablero()
     }
 
-    func seJuega(posición: Posicion) -> String {
-        if let posicionATablero = posición.transformarPosicionATablero(jugador: jugador, tablero: tablero) {
+    func jugar(posición: Posicion) -> String {
+        if let posicionATablero = posición.agregarJugadaAlTablero(jugador: jugadorActual, tablero: tablero) {
             return posicionATablero
         }
         
-        if let resultado = tablero.obtenerResultado(jugador: jugador) {
+        if let resultado = tablero.obtenerResultado(jugador: jugadorActual) {
             return resultado
         }
         
-        jugador = jugador == .uno ? .dos : .uno
+        cambiarTurnoAlOtroJugador()
        
-        return "Próxima ronda juega el jugador: \(jugador.rawValue)"
+        return "Próxima ronda juega el jugador: \(jugadorActual.rawValue)"
+    }
+    
+    private func cambiarTurnoAlOtroJugador() {
+        jugadorActual = jugadorActual == .uno ? .dos : .uno
     }
 }

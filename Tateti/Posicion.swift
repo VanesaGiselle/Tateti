@@ -16,9 +16,11 @@ class Posicion {
         self.y = y
     }
     
-    func transformarPosicionATablero(jugador: Jugador, tablero: Tablero) -> String? {
+    func agregarJugadaAlTablero(jugador: Jugador, tablero: Tablero) -> String? {
         var nuevoTablero = tablero.verTablero()
+        // hacer mas expresivo
         if nuevoTablero[x.rawValue][y.rawValue] == 1 || nuevoTablero[x.rawValue][y.rawValue] == 2 {
+            // excepciones
             return "¡ERROR! La posición ya está ocupada, elegí otra para seguir jugando."
         }
         

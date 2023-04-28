@@ -8,12 +8,29 @@
 import Foundation
 
 class Tablero {
-    private var tablero: [[Int]] = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    private var tablero: [[Int]] = [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]
+    ]
 
-    private let casosGanadores: [[Int]] = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+    private let casosGanadores: [[Int]] = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ]
     
     func iniciar() {
-        tablero = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+        tablero = [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0]
+        ]
     }
     
     func nuevaRonda(_ nuevoTablero: [[Int]]) {
@@ -39,30 +56,18 @@ class Tablero {
     }
     
     private func hayGanador(tablero: [Int], jugador: Jugador, casosGanadores: [[Int]]) -> Bool {
-        if casosGanadores.count == 0 {
+        guard casosGanadores.first(where: {
+            tableroCoincideConCasoGanador(tablero: tablero, caso: $0, jugador: jugador)
+        }) != nil else {
             return false
         }
-        
-        if tableroCoincideConCasoGanador(tablero: tablero, caso: casosGanadores.first!, jugador: jugador) {
-            return true
-        }
-        
-        let casosGanadoresSinPrimerCaso = casosGanadores.dropFirst()
-        
-        return hayGanador(tablero: tablero, jugador: jugador, casosGanadores: Array(casosGanadoresSinPrimerCaso))
+        return true
     }
     
     private func tableroCoincideConCasoGanador(tablero: [Int], caso: [Int], jugador: Jugador) -> Bool {
-        if caso.count == 0 {
-            return true
-        }
-        
-        if tablero[caso.first!] != jugador.rawValue {
-            return false
-        }
-        
-        let casoSinPrimerPosicion = caso.dropFirst()
-        return tableroCoincideConCasoGanador(tablero: tablero, caso: Array(casoSinPrimerPosicion), jugador: jugador)
+        return caso.allSatisfy({
+            tablero[$0] == jugador.rawValue
+        })
     }
 }
 
